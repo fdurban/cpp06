@@ -1,4 +1,7 @@
-
+#include <iostream>
+#include <cstdlib>
+#include <string>
+#include <climits>
 
 class ScalarConverter
 {
