@@ -7,7 +7,6 @@ int main(int argc, char *argv[])
 		std::cerr<<"Please use the right number of arguments"<<std::endl;
 		return 1;
 	}
-	std::cout<<argv[1]<<std::endl;
 	ScalarConverter::convert(argv[1]);
 	return 0;
 }		
