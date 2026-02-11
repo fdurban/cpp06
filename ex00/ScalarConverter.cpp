@@ -45,13 +45,11 @@ static bool	isDouble(std::string&	string)
 	char	*end;
 	if (string == "nan" || string == "+inf" || string == "-inf")
 	{
-		std::cout<<"values non valid for double"<<std::endl;
 		return (true);
 	}
 	if (string.find('.') == std::string::npos)
 		return false;
 	std::strtod(string.c_str(), &end);
-	std::cout<<*end<<std::endl;
 	return (*end == '\0');
 }
 
@@ -141,24 +139,30 @@ void	printChar(float f) {
 
 void	printInt(float f)
 {
-	std::cout<<"int :"<<static_cast<int>(f)<<std::endl;
+	if (std::isnan(f) || std::isinf(f) || f <= static_cast<float>(INT_MIN)
+		- 1.0f || f >= static_cast<float>(INT_MAX) + 1.0f)
+		std::cout << "int: impossible" << std::endl;
+	else
+		std::cout << "int: " << static_cast<int>(f) << std::endl;
 }
 
 void	printFloat(float c)
 {
 	if (c != c)
 		std::cout<<"float: nanf"<<std::endl;
-	else if (c < static_cast<float>(INT_MIN) ||c > static_cast<float>(INT_MAX))
-		std::cout<<"float: impossible"<<std::endl;
+	else if(isinf(c)) std::cout<<"float: "<<(c < 0 ? "-inff": "+inff")<<std::endl;
 	else
 		std::cout<<"float: "<<std::fixed<<std::setprecision(1)<<c<<"f"<<std::endl;
 }
 
 void	printDouble(float f)
 {
-	double result;
-	result =  static_cast<double>(f);
-	std::cout<<"double: "<<result<<std::endl;
+	if (f != f)
+		std::cout<<"double: nan"<<std::endl; 
+	else if(isinf(f)) std::cout<<"double: "<<(f < 0 ? "-inf": "+inf")<<std::endl;
+	else
+		std::cout<<"double: "<<std::fixed<<std::setprecision(12)<<f<<std::endl;
+
 }
 
 // print functions of double
@@ -181,6 +185,11 @@ void	printChar(double c)
 
 void	printInt(double c)
 {
+	if (c != c)
+		std::cout<<"int: nan"<<std::endl;
+	else if (std::isinf(c) || c < INT_MIN || c > INT_MAX)
+		std::cout<<"int: impossible"<<std::endl;
+	else
 	std::cout<<"int :"<<static_cast<int>(c)<<std::endl;
 }
 
@@ -189,18 +198,25 @@ void	printFloat(double c)
 	float result;
 	if(c != c)
 		std::cout<<"float: nanf"<<std::endl;
+	else if(isinf(c)) std::cout<<"float: "<<(c < 0 ? "-inff": "+inff")<<std::endl;
 	else
 	{
-	result = static_cast<float>(c);
-	std::cout<<"float: "<<std::fixed<<std::setprecision(1)<<result<<"f"<<std::endl;
+		result = static_cast<float>(c);
+		std::cout<<"float: "<<std::fixed<<std::setprecision(1)<<result<<"f"<<std::endl;
 	}
 }
 
 void	printDouble(double c)
 {
 	double result;
-	result =  static_cast<double>(c);
-	std::cout<<"double: "<<result<<std::endl;
+	if (c != c)
+		std::cout<<"double: nanf"<<std::endl; 
+	else if(isinf(c)) std::cout<<"double: "<<(c < 0 ? "-inff": "+inff")<<std::endl;
+	else
+	{
+		result =  static_cast<double>(c);
+		std::cout<<"double: "<<std::fixed<<std::setprecision(23)<<result<<std::endl;
+	}
 }
 
 void	ScalarConverter::convert(std::string str)
