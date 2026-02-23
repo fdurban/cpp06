@@ -146,22 +146,35 @@ void	printInt(float f)
 		std::cout << "int: " << static_cast<int>(f) << std::endl;
 }
 
-void	printFloat(float c)
+void	printFloat(float f)
 {
-	if (c != c)
+	if (f != f)
 		std::cout<<"float: nanf"<<std::endl;
-	else if(isinf(c)) std::cout<<"float: "<<(c < 0 ? "-inff": "+inff")<<std::endl;
+	else if(isinf(f)) std::cout<<"float: "<<(f < 0 ? "-inff": "+inff")<<std::endl;
 	else
-		std::cout<<"float: "<<std::fixed<<std::setprecision(1)<<c<<"f"<<std::endl;
+	{
+		if(std::floor(f) == f)
+			std::cout<<"float: "<<std::fixed<<std::setprecision(1)<<f<<std::endl;
+		else
+			std::cout<<"float: "<<std::fixed<<std::setprecision(6)<<f<<std::endl;
+	}
 }
 
 void	printDouble(float f)
 {
+	double result;
 	if (f != f)
 		std::cout<<"double: nan"<<std::endl; 
 	else if(isinf(f)) std::cout<<"double: "<<(f < 0 ? "-inf": "+inf")<<std::endl;
 	else
-		std::cout<<"double: "<<std::fixed<<std::setprecision(12)<<f<<std::endl;
+	{
+		result = static_cast<double>(f);
+		if(std::floor(f) == f)
+			std::cout<<"double: "<<std::fixed<<std::setprecision(1)<<f<<std::endl;
+		else
+			std::cout<<"double: "<<std::fixed<<std::setprecision(6)<<f<<std::endl;
+
+	}
 
 }
 
@@ -202,7 +215,10 @@ void	printFloat(double c)
 	else
 	{
 		result = static_cast<float>(c);
-		std::cout<<"float: "<<std::fixed<<std::setprecision(1)<<result<<"f"<<std::endl;
+		if(std::floor(result) == result)
+			std::cout<<"float: "<<std::fixed<<std::setprecision(1)<<result<<"f"<<std::endl;
+		else
+			std::cout<<"float: "<<std::setprecision(6)<<result<<std::endl;
 	}
 }
 
@@ -215,7 +231,10 @@ void	printDouble(double c)
 	else
 	{
 		result =  static_cast<double>(c);
-		std::cout<<"double: "<<std::fixed<<std::setprecision(23)<<result<<std::endl;
+		if(std::floor(result) == result)
+			std::cout<<"double: "<<std::fixed<<std::setprecision(1)<<result<<std::endl;
+		else
+			std::cout<<"double: "<<std::fixed<<std::setprecision(6)<<result<<std::endl;
 	}
 }
 
