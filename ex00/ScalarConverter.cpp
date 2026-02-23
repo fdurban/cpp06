@@ -154,9 +154,9 @@ void	printFloat(float f)
 	else
 	{
 		if(std::floor(f) == f)
-			std::cout<<"float: "<<std::fixed<<std::setprecision(1)<<f<<std::endl;
+			std::cout<<"float: "<<std::fixed<<std::setprecision(1)<<f<<"f"<<std::endl;
 		else
-			std::cout<<"float: "<<std::fixed<<std::setprecision(6)<<f<<std::endl;
+			std::cout<<"float: "<<std::fixed<<std::setprecision(6)<<f<<"f"<<std::endl;
 	}
 }
 
@@ -218,7 +218,7 @@ void	printFloat(double c)
 		if(std::floor(result) == result)
 			std::cout<<"float: "<<std::fixed<<std::setprecision(1)<<result<<"f"<<std::endl;
 		else
-			std::cout<<"float: "<<std::setprecision(6)<<result<<std::endl;
+			std::cout<<"float: "<<std::fixed<<std::setprecision(6)<<result<<"f"<<std::endl;
 	}
 }
 
