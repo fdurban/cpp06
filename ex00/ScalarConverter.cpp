@@ -224,17 +224,15 @@ void	printFloat(double c)
 
 void	printDouble(double c)
 {
-	double result;
 	if (c != c)
 		std::cout<<"double: nanf"<<std::endl; 
 	else if(isinf(c)) std::cout<<"double: "<<(c < 0 ? "-inff": "+inff")<<std::endl;
 	else
 	{
-		result =  static_cast<double>(c);
-		if(std::floor(result) == result)
-			std::cout<<"double: "<<std::fixed<<std::setprecision(1)<<result<<std::endl;
+		if(std::floor(c) == c)
+			std::cout<<"double: "<<std::fixed<<std::setprecision(1)<<c<<std::endl;
 		else
-			std::cout<<"double: "<<std::fixed<<std::setprecision(6)<<result<<std::endl;
+			std::cout<<"double: "<<std::fixed<<std::setprecision(6)<<c<<std::endl;
 	}
 }
 
@@ -257,7 +255,6 @@ void	ScalarConverter::convert(std::string str)
 	}
 	else if(isInt(str))
 	{
-		std::cout<<"Es int pringao"<<std::endl;
 		tmp = std::strtol(str.c_str(), &end, 10);
 		number = static_cast<int>(tmp);
 		printChar(number);
@@ -267,7 +264,6 @@ void	ScalarConverter::convert(std::string str)
 	}
 	else if(isFloat(str))
 	{
-		std::cout<<"Es float pringao"<<std::endl;
 		floatNum = strtof(str.c_str(), NULL);
 		printChar(floatNum);
 		printInt(floatNum);
@@ -276,7 +272,6 @@ void	ScalarConverter::convert(std::string str)
 	}
 	else if(isDouble(str))
 	{
-		std::cout<<"Es double pringao"<<std::endl;
 		doubleNum = strtod(str.c_str(), NULL);
 		printChar(doubleNum);
 		printInt(doubleNum);
